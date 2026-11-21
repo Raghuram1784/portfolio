@@ -14,7 +14,8 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { MacWindow } from "@/components/ui/MacWindow";
 import { ProjectArt } from "@/components/projects/ProjectStage";
-import { ProjectModal } from "@/components/projects/ProjectModal";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const N = projects.length;
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -54,7 +55,7 @@ function sceneOf(p: Project, _dark: boolean) {
   return { bg: p.brand.bg, bg2: p.brand.bg2, ink: p.brand.ink, light: false };
 }
 
-function Info({ p, i, onOpen, light, ink }: { p: Project; i: number; onOpen: () => void; light?: boolean; ink: string }) {
+function Info({ p, i, light, ink }: { p: Project; i: number; light?: boolean; ink: string }) {
   const ring = light ? "border-navy-900/20 hover:border-navy-900/50" : "border-white/25 hover:border-white/60";
   return (
     <div className="grid items-end gap-6 md:grid-cols-12" style={{ color: ink }}>
@@ -72,16 +73,15 @@ function Info({ p, i, onOpen, light, ink }: { p: Project; i: number; onOpen: () 
       <div className="md:col-span-5 md:justify-self-end md:text-right">
         <p className="font-mono text-[0.74rem] leading-relaxed tracking-wide opacity-70">{p.tech.slice(0, 5).join(" · ")}</p>
         <div className="mt-4 flex flex-wrap items-center gap-2.5 md:justify-end">
-          <button
-            type="button"
-            onClick={onOpen}
+          <Link
+            href={`/work/${p.slug}`}
             data-cursor="Open"
             className="group inline-flex items-center gap-2 rounded-full px-5 py-3 text-[0.95rem] font-semibold transition-transform hover:-translate-y-0.5"
             style={{ background: p.brand.accent, color: light || isLight(p) ? "#fff" : p.brand.bg }}
           >
-            {p.shots.length ? `Case study · ${p.shots.length} screens` : "Case study"}
+            Read the case study
             <ArrowUpRight size={16} className="transition-transform group-hover:rotate-45" />
-          </button>
+          </Link>
           {p.github && (
             <a href={p.github} target="_blank" rel="noopener noreferrer" aria-label={`${p.title} on GitHub`} className={cn("grid h-11 w-11 place-items-center rounded-full border transition-colors", ring)}>
               <GithubIcon size={18} />
@@ -301,7 +301,7 @@ function ScrollCarousel({ onOpen, dark }: { onOpen: (p: Project) => void; dark: 
       <div className="container-x absolute inset-x-0 bottom-0 z-[200] pb-8">
         <AnimatePresence mode="wait">
           <motion.div key={p.slug} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.35, ease }}>
-            <Info p={p} i={active} onOpen={() => onOpen(p)} light={light} ink={sc.ink} />
+            <Info p={p} i={active} light={light} ink={sc.ink} />
           </motion.div>
         </AnimatePresence>
         <div className={cn("mt-6 h-px w-full", light ? "bg-navy-900/15" : "bg-white/15")}>
@@ -386,7 +386,7 @@ function SwipeCarousel({ onOpen, dark }: { onOpen: (p: Project) => void; dark: b
       <div className="container-x mt-8">
         <AnimatePresence mode="wait">
           <motion.div key={p.slug} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-            <Info p={p} i={sel} onOpen={() => onOpen(p)} light={light} ink={sc.ink} />
+            <Info p={p} i={sel} light={light} ink={sc.ink} />
           </motion.div>
         </AnimatePresence>
         <div className="mt-6 flex justify-end gap-3">
@@ -405,8 +405,8 @@ function SwipeCarousel({ onOpen, dark }: { onOpen: (p: Project) => void; dark: b
 export function Projects() {
   const wide = useMediaQuery("(min-width: 768px)", true);
   const reduce = usePrefersReducedMotion();
-  const [open, setOpen] = useState<Project | null>(null);
-  const onClose = useCallback(() => setOpen(null), []);
+  const router = useRouter();
+  const open = useCallback((p: Project) => router.push(`/work/${p.slug}`), [router]);
   const { resolvedTheme } = useTheme();
   const dark = resolvedTheme === "dark";
 
@@ -424,9 +424,8 @@ export function Projects() {
       <h2 id="projects-title" className="sr-only">
         Selected work
       </h2>
-      {!reduce ? <ScrollCarousel onOpen={setOpen} dark={dark} /> : <SwipeCarousel onOpen={setOpen} dark={dark} />}
+      {!reduce ? <ScrollCarousel onOpen={open} dark={dark} /> : <SwipeCarousel onOpen={open} dark={dark} />}
 
-      <ProjectModal project={open} onClose={onClose} />
     </section>
   );
 }

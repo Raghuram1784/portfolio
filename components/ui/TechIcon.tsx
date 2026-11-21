@@ -1,9 +1,11 @@
 import {
   siC, siCplusplus, siDart, siDocker, siExpress, siFastapi, siFlutter, siGit, siHuggingface, siJavascript, siLangchain,
   siLinux, siMeta, siMongodb, siMysql, siNestjs, siNextdotjs, siNodedotjs, siOpenjdk, siPostgresql, siPython, siReact,
-  siSpringboot, siTailwindcss, siTypescript, type SimpleIcon,
+  siSpringboot, siTailwindcss, siTypescript, siPrisma, siVercel, siRazorpay, siPytorch, siOpencv, siVite, siRadixui,
+  siScikitlearn, siSqlalchemy, siShadcnui, siSocketdotio, siGooglegemini, siFramer, siAndroid, siLeaflet, siNeon, siXyflow,
+  siFlask, siHtml5, siCss, siStreamlit, type SimpleIcon,
 } from "simple-icons";
-import { BrainCircuit, Cloud, Database, FileSearch, Layers, MessageSquareText, Sparkles, Webhook, type LucideIcon } from "lucide-react";
+import { BrainCircuit, ChartColumn, Cloud, Cpu, Database, FileSearch, HeartPulse, Layers, Leaf, MessageSquareText, Mic, QrCode, Radio, ScanEye, Share2, Sparkles, Webhook, type LucideIcon } from "lucide-react";
 
 /** Brand logos (Simple Icons, CC0) for tools; line icons for concepts. */
 const BRAND: Record<string, SimpleIcon> = {
@@ -12,13 +14,21 @@ const BRAND: Record<string, SimpleIcon> = {
   "Node.js": siNodedotjs, "Express.js": siExpress, NestJS: siNestjs, "Spring Boot": siSpringboot, FastAPI: siFastapi,
   LangChain: siLangchain, FAISS: siMeta, Transformers: siHuggingface, PostgreSQL: siPostgresql, MySQL: siMysql,
   MongoDB: siMongodb, Git: siGit, Docker: siDocker, Linux: siLinux,
+  // used on the project case-study pages
+  "React 19": siReact, Express: siExpress, Prisma: siPrisma, "Neon PostgreSQL": siNeon, Razorpay: siRazorpay,
+  "Razorpay (test mode)": siRazorpay, Vercel: siVercel, PyTorch: siPytorch, OpenCV: siOpencv, Vite: siVite,
+  "Radix UI": siRadixui, "scikit-learn": siScikitlearn, SQLAlchemy: siSqlalchemy, "shadcn/ui": siShadcnui,
+  "Socket.IO": siSocketdotio, "Google Gemini": siGooglegemini, "Framer Motion": siFramer, Android: siAndroid,
+  "React Leaflet": siLeaflet, "@xyflow/react": siXyflow, Flask: siFlask, HTML: siHtml5, CSS: siCss, Streamlit: siStreamlit,
 };
 const CONCEPT: Record<string, LucideIcon> = {
   SQL: Database, "REST APIs": Webhook, "Machine Learning": BrainCircuit, "Deep Learning": Layers, NLP: MessageSquareText,
   LLMs: Sparkles, RAG: FileSearch, AWS: Cloud,
+  "MegaDetector V6": ScanEye, BioCLIP: Leaf, BioClinicalBERT: HeartPulse, NetworkX: Share2, "Groq LLM": Cpu, Groq: Cpu,
+  Recharts: ChartColumn, WebSockets: Radio, "QR codes": QrCode, "Web Speech API": Mic,
 };
 // near-black brand marks are drawn in the current text colour so they stay visible in dark mode
-const MONO = new Set(["Next.js", "Express.js", "Linux"]);
+const MONO = new Set(["Next.js", "Express.js", "Express", "Linux", "Vercel", "shadcn/ui", "Socket.IO", "Prisma", "Framer Motion"]);
 
 export function TechIcon({ name, size = 20 }: { name: string; size?: number }) {
   const b = BRAND[name];

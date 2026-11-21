@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Cursor } from "@/components/layout/Cursor";
 import { Preloader } from "@/components/layout/Preloader";
 import { BackToTop } from "@/components/layout/BackToTop";
+import { HashScroll } from "@/components/layout/HashScroll";
 import { Hero } from "@/components/hero/Hero";
 import { About } from "@/components/sections/About";
 import { Projects } from "@/components/sections/Projects";
@@ -55,6 +56,7 @@ export default function Home() {
       </main>
       <Footer />
       <BackToTop />
+      <HashScroll />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   );

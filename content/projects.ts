@@ -64,6 +64,13 @@ export const allProjects: Project[] = [
       "Merchant dashboard with AI-assisted revenue attribution",
       "Append-only CommerceEvent audit trail",
     ],
+    pipeline: [
+      { label: "Discover", detail: "Conversational request · deterministic ranking" },
+      { label: "Authorize", detail: "Explicit consent before any cart or payment action" },
+      { label: "Pay", detail: "Razorpay Test Mode checkout" },
+      { label: "Verify", detail: "Server-side payment verification" },
+      { label: "Attribute", detail: "AI revenue attribution · append-only audit trail" },
+    ],
     shots: [
       s("/projects/mercora-ai/storefront.webp", "Mercora AI storefront", 1600, 753),
       s("/projects/mercora-ai/ai-recommendation.webp", "Mercora AI ranking headphones for a natural-language request", 853, 877),
@@ -95,6 +102,13 @@ export const allProjects: Project[] = [
       "Six-camera command monitor, incl. Android mobile camera ingestion",
       "Forest camera map and risk distribution overview",
       "Detection metadata export to JSON and CSV",
+    ],
+    pipeline: [
+      { label: "Capture", detail: "Camera-trap, patrol and Android camera imagery" },
+      { label: "Detect", detail: "MegaDetector V6 · person / vehicle / animal" },
+      { label: "Recognise", detail: "BioCLIP · ranked top-three species" },
+      { label: "Score", detail: "Zone-aware risk rules" },
+      { label: "Alert", detail: "Ranger review queue on the command dashboard" },
     ],
     shots: [
       s("/projects/vanadrishti/overview.webp", "VanaDrishti overview with forest camera map and risk distribution", 1600, 1000),
@@ -147,6 +161,13 @@ export const allProjects: Project[] = [
       "Backtrack and rework-loop detection",
       "Session-level completion vs abandonment risk",
     ],
+    pipeline: [
+      { label: "Ingest", detail: "Raw user event streams" },
+      { label: "Model", detail: "Directed weighted workflow graph · NetworkX" },
+      { label: "Analyse", detail: "PageRank & betweenness · bottlenecks and rework loops" },
+      { label: "Predict", detail: "Random Forest · abandonment risk per session" },
+      { label: "Explore", detail: "Interactive graph canvas" },
+    ],
     shots: [
       s("/projects/flowtwin-ai/overview.webp", "FlowTwin AI overview dashboard", 1532, 907),
       s("/projects/flowtwin-ai/workflow-graph.webp", "Digital twin workflow graph", 1600, 819),
@@ -173,6 +194,13 @@ export const allProjects: Project[] = [
       "Unique QR code for every job post",
       "Voice input for hands-free form filling",
       "Admin dashboard for jobs and students",
+    ],
+    pipeline: [
+      { label: "Assess", detail: "Values, preferences and personality" },
+      { label: "Publish", detail: "Digital student profile" },
+      { label: "Post", detail: "Every job gets a unique QR code" },
+      { label: "Scan", detail: "View and express interest in one click" },
+      { label: "Match", detail: "AI fitment scoring for recruiters" },
     ],
     shots: [
       s("/projects/scan2hire/home.webp", "Scan2Hire landing page", 1600, 716),
@@ -236,6 +264,13 @@ export const allProjects: Project[] = [
       "Scheduled delivery windows",
       "Live rider GPS tracking",
       "PIN-verified handover",
+    ],
+    pipeline: [
+      { label: "Find", detail: "AI Smart Food Finder · group orders" },
+      { label: "Confirm", detail: "NestJS + PostgreSQL: the source of truth for price and state" },
+      { label: "Prepare", detail: "Restaurant owner operations" },
+      { label: "Track", detail: "Live rider GPS" },
+      { label: "Handover", detail: "PIN-verified delivery" },
     ],
     shots: [
       s("/projects/samori/customer-discovery.webp", "SAMORI discovery, menu and nutrition screens", 1404, 880),
