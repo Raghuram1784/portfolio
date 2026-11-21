@@ -4,7 +4,6 @@ import { navItems, site } from "@/content/site";
 import { scrollToSection } from "@/lib/gsap";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
 import { Logo } from "@/components/ui/Logo";
-import { OPEN_TERMINAL } from "@/components/layout/Terminal";
 
 export function Footer() {
   return (
@@ -51,10 +50,7 @@ export function Footer() {
         {site.name}
       </p>
       <p className="container-x border-t border-ivory/10 py-5 text-center font-mono text-[0.74rem] tracking-wide text-ivory/50">
-        © {new Date().getFullYear()} {site.shortName} · Designed &amp; engineered in Hyderabad ·{" "}
-        <button type="button" onClick={() => window.dispatchEvent(new Event(OPEN_TERMINAL))} className="text-gold-light underline decoration-gold/40 underline-offset-4 hover:decoration-gold">
-          press <kbd className="rounded border border-ivory/25 px-1.5 py-0.5 text-ivory/80">`</kbd> for the terminal
-        </button>
+        © {new Date().getFullYear()} {site.shortName} · Designed &amp; engineered in Hyderabad
       </p>
     </footer>
   );

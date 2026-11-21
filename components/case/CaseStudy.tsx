@@ -11,7 +11,6 @@ import { AppIcon } from "@/components/ui/TechIcon";
 import { GithubIcon } from "@/components/ui/BrandIcons";
 import { Logo } from "@/components/ui/Logo";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
-import { TerminalButton } from "@/components/ui/TerminalButton";
 import { Provenance } from "@/components/projects/ProjectStage";
 import { cn } from "@/lib/cn";
 
@@ -60,7 +59,6 @@ function CaseNav() {
           <Link href="/#projects" className="inline-flex h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-[0.9rem] font-medium transition-colors hover:border-white/60">
             <ArrowLeft size={16} /> All work
           </Link>
-          <TerminalButton className="border-white/20 hover:border-white/60" />
           <ThemeToggle />
         </div>
       </nav>

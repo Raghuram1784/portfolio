@@ -7,7 +7,6 @@ import { navItems, site, type SectionId } from "@/content/site";
 import { scrollToSection } from "@/lib/gsap";
 import { cn } from "@/lib/cn";
 import { ThemeToggle } from "./ThemeToggle";
-import { TerminalButton } from "@/components/ui/TerminalButton";
 import { Logo } from "@/components/ui/Logo";
 
 export function Navbar({ resumeAvailable }: { resumeAvailable: boolean }) {
@@ -104,7 +103,6 @@ export function Navbar({ resumeAvailable }: { resumeAvailable: boolean }) {
           </ul>
 
           <div className="flex items-center gap-2">
-            <TerminalButton className="border-line text-ink hover:border-gold" />
             <ThemeToggle />
             {resumeAvailable && (
               <a

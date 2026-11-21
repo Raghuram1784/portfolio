@@ -2,10 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
 import localFont from "next/font/local";
 import { site } from "@/content/site";
-import fs from "node:fs";
-import path from "node:path";
 import { Providers } from "@/components/layout/Providers";
-import { Terminal } from "@/components/layout/Terminal";
 import "./globals.css";
 
 const generalSans = localFont({
@@ -66,10 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <Providers>
-          {children}
-          <Terminal resumeAvailable={fs.existsSync(path.join(process.cwd(), "public", site.resumePath.replace(/^\//, "")))} />
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
