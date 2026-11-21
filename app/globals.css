@@ -1,0 +1,218 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------
+   Palette — light-led editorial. Ivory & beige carry the page,
+   royal/navy is reserved for dramatic sections, gold is a small accent.
+   ------------------------------------------------------------------ */
+@theme {
+  --color-navy-950: #0b1424;
+  --color-navy-900: #111f36; /* deep navy */
+  --color-navy-800: #182c4b;
+  --color-navy-700: #203a64; /* royal blue */
+  --color-navy-500: #365783;
+  --color-navy-300: #8ea2c2;
+  --color-navy-100: #dfe5ef;
+
+  --color-ivory: #faf5ec;
+  --color-beige: #f1e5d2;
+  --color-sand: #d9c8af;
+
+  --color-gold: #c7a261;
+  --color-gold-light: #e6c990;
+  --color-gold-deep: #9e7b3e;
+
+  /* aliases kept for shared components */
+  --color-lapis-950: #0b1424;
+  --color-lapis-900: #111f36;
+  --color-lapis-800: #182c4b;
+  --color-lapis-700: #203a64;
+  --color-lapis-600: #365783;
+  --color-lapis-400: #6681aa;
+  --color-lapis-200: #c5d0e3;
+  --color-parchment: #f1e5d2;
+  --color-vellum: #d9c8af;
+  --color-gilt-200: #f2e2bf;
+  --color-gilt-300: #e6c990;
+  --color-gilt-400: #d6b77a;
+  --color-gilt-500: #c7a261;
+  --color-gilt-700: #9e7b3e;
+
+  --font-display: var(--font-clash), "Clash Display", var(--font-general), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-general), "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), "Instrument Serif", Georgia, serif;
+  --font-mono: var(--font-plex), "IBM Plex Mono", ui-monospace, monospace;
+
+  --ease-royal: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+}
+
+:root {
+  /* warm beige base — never plain white */
+  --bg: #f1e5d2;
+  --bg-soft: #e7d6bb;
+  --surface: #f8efe1;
+  --ink: #111f36;
+  --text: #2a3550;
+  --muted: #5d6681;
+  --line: rgba(17, 31, 54, 0.12);
+  --accent: #9e7b3e;
+  --shadow-soft: 0 1px 2px rgba(17, 31, 54, 0.05), 0 18px 40px -22px rgba(17, 31, 54, 0.3);
+  --shadow-lift: 0 2px 6px rgba(17, 31, 54, 0.06), 0 50px 100px -40px rgba(17, 31, 54, 0.45);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #111f36;
+  --bg-soft: #0d1a2e;
+  --surface: #182c4b;
+  --ink: #f1e5d2;
+  --text: #dbd2c1;
+  --muted: #a6b0c5;
+  --line: rgba(241, 229, 210, 0.13);
+  --accent: #e6c990;
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.2), 0 18px 40px -22px rgba(0, 0, 0, 0.6);
+  --shadow-lift: 0 2px 6px rgba(0, 0, 0, 0.25), 0 50px 100px -40px rgba(0, 0, 0, 0.75);
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+    transition: background-color 0.5s var(--ease-royal), color 0.5s var(--ease-royal);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+  ::selection { background: var(--color-gold-light); color: var(--color-navy-900); }
+  :focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; border-radius: 6px; }
+  @media (hover: hover) and (pointer: fine) {
+    html.has-cursor, html.has-cursor * { cursor: none !important; }
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+
+@layer components {
+  .container-x { width: 100%; max-width: 1360px; margin-inline: auto; padding-inline: 20px; }
+  @media (min-width: 640px) { .container-x { padding-inline: 32px; } }
+  @media (min-width: 1024px) { .container-x { padding-inline: 56px; } }
+
+  /* mono technical label */
+  .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .label > b { color: var(--accent); font-weight: 500; }
+
+  /* editorial emphasis */
+  .serif-it, .serif-em { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+
+  /* restrained metallic accent */
+  .gilt {
+    background: linear-gradient(100deg, #9e7b3e 0%, #c7a261 40%, #e6c990 55%, #c7a261 70%, #9e7b3e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .dark .gilt { background-image: linear-gradient(100deg, #c7a261 0%, #e6c990 45%, #f6e7c4 55%, #e6c990 70%, #c7a261 100%); }
+
+  /* always-navy / always-beige surfaces */
+  .lapis, .navy { background: #111f36; color: #faf5ec; }
+  .lapis h2, .lapis h3, .navy h2, .navy h3, .navy h4 { color: #faf5ec; }
+  .vellum { background: #f1e5d2; color: #111f36; }
+  .vellum h2, .vellum h3 { color: #111f36; }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px;
+    padding: 0.32rem 0.8rem; font-size: 0.8rem; font-weight: 500;
+    border: 1px solid var(--line); color: var(--ink); white-space: nowrap;
+  }
+
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ""; position: absolute; left: 50%; right: 50%; bottom: 4px; height: 1px;
+    background: var(--color-gold); transition: left 0.35s var(--ease-royal), right 0.35s var(--ease-royal);
+  }
+  .nav-link:hover::after { left: 14px; right: 14px; }
+
+  .outline-text { color: transparent; -webkit-text-stroke: 1px var(--line); }
+
+  .shine { position: relative; overflow: hidden; isolation: isolate; }
+  .shine::before {
+    content: ""; position: absolute; inset: -50% auto -50% -60%; width: 40%;
+    transform: rotate(18deg); background: linear-gradient(90deg, transparent, rgba(255, 248, 230, 0.35), transparent);
+    transition: transform 0.9s var(--ease-royal); pointer-events: none; z-index: 1;
+  }
+  .shine:hover::before { transform: rotate(18deg) translateX(420%); }
+}
+
+@keyframes breathe { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.06); opacity: 0.45; } }
+@keyframes wave { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+.anim-breathe { transform-origin: center; transform-box: fill-box; animation: breathe 3.2s ease-in-out infinite; }
+.anim-wave { transform-origin: center; animation: wave 1.3s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Dark theme rhythm: drama sections lift to royal blue so the page still alternates */
+.dark .navy, .dark .lapis { background: #0e1a2f; }
+
+/* Experience: deep midnight with a soft royal glow, the same in both themes */
+.midnight { background: radial-gradient(70% 50% at 85% 0%, rgba(54, 87, 131, 0.35), transparent 70%), radial-gradient(50% 40% at 0% 100%, rgba(199, 162, 97, 0.1), transparent 70%), linear-gradient(180deg, #0c1628 0%, #0a1322 100%); color: #faf5ec; }
+.midnight h2, .midnight h3 { color: #faf5ec; }
+
+/* Hero fallback: slow flowing gradient (the WebGL silk covers it when available) */
+.hero-flow {
+  background:
+    radial-gradient(45% 55% at 75% 40%, rgba(54, 87, 131, 0.35), transparent 70%),
+    radial-gradient(35% 45% at 20% 80%, rgba(199, 162, 97, 0.28), transparent 70%),
+    radial-gradient(40% 40% at 60% 90%, rgba(32, 58, 100, 0.25), transparent 70%);
+  background-size: 160% 160%;
+  animation: flow 18s ease-in-out infinite alternate;
+}
+.dark .hero-flow {
+  background:
+    radial-gradient(45% 55% at 75% 40%, rgba(54, 87, 131, 0.6), transparent 70%),
+    radial-gradient(35% 45% at 20% 80%, rgba(199, 162, 97, 0.18), transparent 70%),
+    radial-gradient(40% 40% at 60% 90%, rgba(32, 58, 100, 0.5), transparent 70%);
+  background-size: 160% 160%;
+}
+@keyframes flow { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
